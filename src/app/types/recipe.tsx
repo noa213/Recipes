@@ -6,4 +6,5 @@ export interface IRecipe extends Document{
     ingredients: string;
     instructions: string;
     image: string;
+    isFavorite: boolean;
 }
