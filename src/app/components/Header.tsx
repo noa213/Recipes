@@ -10,12 +10,14 @@ import {
   Tab,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+// import { useRouter } from "next/navigation";
 
 function Header() {
   const [value, setValue] = React.useState(0);
-
-  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
+  // const router = useRouter();
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    // router.replace(`/${}`)
   };
   return (
     <AppBar position="static" className="bg-white shadow-md">

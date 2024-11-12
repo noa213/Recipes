@@ -17,7 +17,6 @@ const Page = () => {
   }, []);
   return (
     <div>
-      home
       <RecipeCard recipes={recipes} />
     </div>
   );
