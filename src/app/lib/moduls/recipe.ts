@@ -7,7 +7,7 @@ const Recipes: Schema<IRecipe> = new Schema({
   ingredients: { type: String, required: true },
   instructions: { type: String, required: true },
   image: { type: String, required: true },
-});
+  isFavorite: { type: Boolean, required: true, default: false }});
 
 const Recipe: Model<IRecipe> =
   mongoose.models.Recipe || mongoose.model<IRecipe>("recipe", Recipes);
