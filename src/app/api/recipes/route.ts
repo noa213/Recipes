@@ -1,6 +1,6 @@
 import connect from "@/app/lib/db/mongo-db";
 import Recipe from "@/app/lib/moduls/recipe";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -12,7 +12,7 @@ export async function GET() {
   }
 }
 
-export async function POST(req: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     await connect();
     const { name, category, ingredients, instructions, image, isFavorite } = await req.json();
