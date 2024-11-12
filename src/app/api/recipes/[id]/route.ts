@@ -1,16 +1,15 @@
 import connect from "@/app/lib/db/mongo-db";
 import Recipe from "@/app/lib/moduls/recipe";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
-  { params }: { params: { id: string } },
-  req: NextResponse
+  req: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
     await connect();
     const { id } = params;
-    const { name, category, ingredients, instructions, image, isFavorite } =
-      await req.json();
+    const { name, category, ingredients, instructions, image, isFavorite } = await req.json();
     console.log(id);
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       id,
