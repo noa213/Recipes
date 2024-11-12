@@ -3,13 +3,14 @@ import Recipe from "@/app/lib/moduls/recipe";
 import { NextResponse } from "next/server";
 
 export async function PUT(
-  req: NextResponse,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
+  req: NextResponse
 ) {
   try {
     await connect();
     const { id } = params;
-    const { name, category, ingredients, instructions, image, isFavorite } = await req.json();
+    const { name, category, ingredients, instructions, image, isFavorite } =
+      await req.json();
     console.log(id);
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       id,

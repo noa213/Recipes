@@ -16,7 +16,8 @@ function Header() {
 
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
-  };  return (
+  };
+  return (
     <AppBar position="static" className="bg-white shadow-md">
       <Toolbar className="px-8 py-4 flex justify-between items-center">
         <Typography
@@ -34,7 +35,7 @@ function Header() {
 
           <div className="relative flex items-center bg-gray-100 rounded-full">
             <InputBase
-              placeholder="חפש מתכון"
+              placeholder="Search"
               startAdornment={<SearchIcon className="text-gray-400" />}
               className="text-gray-700 bg-transparent pl-3 pr-4 py-2 rounded-full placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out"
             />
@@ -55,7 +56,7 @@ function Header() {
         textColor="primary"
       >
         <Tab label="All Recipes" className="text-gray-800 font-medium" />
-        <Tab label="Favorite" className="text-gray-800 font-medium" />
+        <Tab label="Favorites" className="text-gray-800 font-medium" />
       </Tabs>
     </AppBar>
   );
