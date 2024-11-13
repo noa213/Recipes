@@ -15,8 +15,10 @@ const Page = () => {
 
     fetchData();
   }, []);
+
   return (
     <div>
+      <>{recipes.map((recipe) => console.log(recipe))}</>
       <RecipeCard recipes={recipes} />
     </div>
   );

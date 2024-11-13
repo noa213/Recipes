@@ -1,15 +1,16 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import { IRecipe } from '../types/recipe';
 
 import React from 'react';
 
 const RecipeCard = ({ recipes }:{recipes:IRecipe[]}) => {
+  // console.log("recipes:", recipes); // הדפסת value של recipes
 
 return (
     <>
       {recipes.map((recipe: IRecipe) => (
         <div className="bg-white shadow-md rounded-lg overflow-hidden" key={recipe.name}>
-          <Image src={recipe.image} width={200} height={200} alt={recipe.name} className="w-full h-48 object-cover" />
+          {/* <Image src={recipe.image} width={200} height={200} alt={recipe.name} className="w-full h-48 object-cover" /> */}
           <div className="p-4">
             <h2 className="text-xl font-bold">{recipe.name}</h2>
             <p className="text-gray-700">{recipe.category}</p>
