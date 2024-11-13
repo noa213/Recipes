@@ -10,11 +10,11 @@ import {
   Tab,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import NewRecipe from "./NewRecipe"; // יבוא של הקומפוננטה שמטפלת במודאל
+// import NewRecipe from "./NewRecipe"; // יבוא של הקומפוננטה שמטפלת במודאל
 
 function Header() {
   const [value, setValue] = React.useState(0);
-  const [open, setOpen] = React.useState(false); // מצב לפתיחה וסגירה של המודאל
+  // const [open, setOpen] = React.useState(false); // מצב לפתיחה וסגירה של המודאל
 
   // טיפול בשינוי של הטאבים
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -23,13 +23,13 @@ function Header() {
 
   // טיפול בפתיחה של המודאל
   const handleClickOpen = () => {
-    setOpen(true);
+    // setOpen(true);
   };
 
   // טיפול בסגירת המודאל
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <>
@@ -78,7 +78,7 @@ function Header() {
         </Tabs>
       </AppBar>
 
-      <NewRecipe open={open} onClose={handleClose} />
+      {/* <NewRecipe open={open} onClose={handleClose} /> */}
     </>
   );
 }
