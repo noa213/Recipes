@@ -1,6 +1,6 @@
 import Document from "mongoose";
 
-export interface IRecipe extends Document{
+export interface IRecipe {
     name: string;
     category: string;
     ingredients: string[];

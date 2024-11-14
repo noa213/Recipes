@@ -559,10 +559,11 @@ import {
   Tab,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import NewRecipe from "./NewRecipe";
 
 function Header() {
   const [value, setValue] = useState(0);
-  // const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false); 
   // טיפול בשינוי של הטאבים
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -571,30 +572,22 @@ function Header() {
 
   // טיפול בפתיחה של המודאל
   const handleClickOpen = () => {
-    // setOpen(true);
+    setOpen(true);
   };
 
   // טיפול בסגירת המודאל
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
 
   return (
     <>
-      {/* <AppBar
-        position="static"
-        className="shadow-lg"
-        style={{
-          background: "#fff", // רקע לבן בהיר
-          backdropFilter: "blur(10px)", // טשטוש עדין של התמונה ברקע
-        }}
-      > */}
       <AppBar
       position="static"
       className="shadow-lg"
       style={{
-        backgroundColor: "#F5F5F5", // Lighter background
+        backgroundColor: "#F5F5F5",
         backdropFilter: "blur(10px)",
       }}
     >
@@ -604,7 +597,7 @@ function Header() {
             component="div"
             className="font-extrabold text-4xl tracking-wide"
             style={{
-              color: "#212121", // שחור (לכותרת האתר, עם ניגוד חזק)
+              color: "#212121",
             }}
           >
             RECIPES
@@ -627,35 +620,17 @@ function Header() {
 
             <Button
               className="bg-[#9B111E] hover:bg-[#D32F2F] text-white font-semibold py-2 px-5 rounded-full transition duration-200 ease-in-out shadow-md"
-              onClick={handleClickOpen} // פותח את המודאל
+              onClick={handleClickOpen}
             >
               New Recipe
             </Button>
           </div>
         </Toolbar>
 
-        {/* <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-          className="bg-[#f7f2e7] text-[#212121] mt-2 px-4" // רקע בהיר עם צבע שחור לטקסט
-          indicatorColor="primary"
-          textColor="primary"
-        >
-          <Tab
-            label="All Recipes"
-            className="font-medium text-[#212121]" // שחור עבור הטאב הראשון
-          />
-          <Tab
-            label="Favorites"
-            className="font-medium text-[#212121]" // שחור עבור הטאב השני
-          />
-        </Tabs> */}
         <Tabs
         value={value}
         onChange={handleChange}
-        // aria-label="basic tabs example"
-        className="bg-[#f7f2e7] text-gray-700 mt-2 px-4" // Lighter background with gray text
+        className="bg-[#f7f2e7] text-gray-700 mt-2 px-4"
         indicatorColor="secondary"
         textColor="secondary"
       >
@@ -664,6 +639,7 @@ function Header() {
         <Tab label="Favorites" />
       </Tabs>
       </AppBar>
+      <NewRecipe open={open} onClose={handleClose} />
     </>
   );
 }

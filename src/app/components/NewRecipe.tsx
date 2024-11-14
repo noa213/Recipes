@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -7,16 +6,18 @@ import {
   DialogTitle,
   TextField,
   Button,
+  Checkbox,
 } from "@mui/material";
 import { IRecipe } from "../types/recipe";
 import { addRecipe } from "../services/recipes";
+
 interface NewRecipeDialogProps {
   open: boolean;
   onClose: () => void;
 }
 
 const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
-  const [newRecipe, setNewRecipe] = useState<Partial<IRecipe>>({
+  const [newRecipe, setNewRecipe] = useState<IRecipe>({
     name: "",
     category: "",
     ingredients: [],
@@ -24,7 +25,6 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
     image: "",
     isFavorite: false,
   });
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewRecipe((prev) => ({
@@ -33,18 +33,59 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
     }));
   };
 
-  // Handle saving the new recipe
   const handleSubmit = async () => {
     console.log("New Recipe Submitted:", newRecipe);
     const response = await addRecipe(newRecipe);
-    console.log("New Recipe Submitted:", response);
+    console.log(response);
 
     onClose();
   };
-
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Add New Recipe</DialogTitle>
+      {/* <DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          label="Recipe Name"
+          type="text"
+          fullWidth
+          variant="outlined"
+          name="name"
+          value={newRecipe.name}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="dense"
+          label="Category"
+          type="text"
+          fullWidth
+          variant="outlined"
+          name="category"
+          value={newRecipe.category}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="dense"
+          label="Ingredients"
+          type="text"
+          fullWidth
+          variant="outlined"
+          name="ingredients"
+          value={newRecipe.ingredients}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="dense"
+          label="Instructions"
+          type="text"
+          fullWidth
+          variant="outlined"
+          name="instructions"
+          value={newRecipe.instructions}
+          onChange={handleInputChange}
+        />
+      </DialogContent> */}
       <DialogContent>
         <TextField
           autoFocus
@@ -87,6 +128,16 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
           value={newRecipe.instructions}
           onChange={handleInputChange}
         />
+        <TextField
+          margin="dense"
+          label="Image URL"
+          type="text"
+          fullWidth
+          variant="outlined"
+          name="image"
+          value={newRecipe.image}
+          onChange={handleInputChange}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">
@@ -99,5 +150,4 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
     </Dialog>
   );
 };
-
 export default NewRecipe;
