@@ -22,8 +22,8 @@ export async function POST(req: NextRequest) {
     await recipe.save();
     console.log('post func in ruote image');
     
-    return await GET();
-    // return NextResponse.json({ newRecipe: recipe });
+    // return await GET();
+    return NextResponse.json({ newRecipe: recipe });
   } catch (error) {
     return NextResponse.json({ message: "Error: " + error }, { status: 500 });
   }

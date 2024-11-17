@@ -3,15 +3,16 @@ import React from "react";
 
 const RecipeCard = ({ recipes }: { recipes: IRecipe[] }) => {
   return (
-    <>
+    <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4">
       {recipes.map((recipe: IRecipe) => (
         <div
           key={recipe.name}
           className="bg-white rounded-lg shadow-xl overflow-hidden max-w-sm mx-auto mb-6 hover:shadow-2xl transform hover:scale-105 transition duration-300"
         >
+          {/* <>{recipe}</> */}
+
           {/* כאן אפשר להוסיף תמונה אם יש */}
           {/* <Image src={recipe.image} width={200} height={200} alt={recipe.name} className="w-full h-48 object-cover" /> */}
-
           <div className="p-6">
             <h2 className="text-3xl font-extrabold text-gray-800 mb-3 tracking-wide">
               {recipe.name}
@@ -36,7 +37,7 @@ const RecipeCard = ({ recipes }: { recipes: IRecipe[] }) => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
