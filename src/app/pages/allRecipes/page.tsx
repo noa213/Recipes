@@ -1,14 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
 "use client";
 import React, { useEffect, useState } from "react";
 import { getRecipes } from "@/app/services/recipes";
