@@ -6,7 +6,6 @@ import {
   DialogTitle,
   TextField,
   Button,
-  Checkbox,
 } from "@mui/material";
 import { IRecipe } from "../types/recipe";
 import { useRecipeStore } from "../store/store";
@@ -39,9 +38,9 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
   const handleSubmit = async () => {
     const response = await addRecipe(newRecipe);
     addRecipeStore(response);
-    // addRecipe(newRecipe); 
     onClose();
   };
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Add New Recipe</DialogTitle>

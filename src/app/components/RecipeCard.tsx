@@ -9,7 +9,6 @@ const RecipeCard = ({ recipes }: { recipes: IRecipe[] }) => {
           key={recipe.name}
           className="bg-white rounded-lg shadow-xl overflow-hidden max-w-sm mx-auto mb-6 hover:shadow-2xl transform hover:scale-105 transition duration-300"
         >
-          {/* <>{recipe}</> */}
 
           {/* כאן אפשר להוסיף תמונה אם יש */}
           {/* <Image src={recipe.image} width={200} height={200} alt={recipe.name} className="w-full h-48 object-cover" /> */}
