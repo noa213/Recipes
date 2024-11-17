@@ -547,57 +547,36 @@
 
 
 
-"use client";
+
+
+
+
+
+
+// Header.tsx
+"use client"
 import React, { useState } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  InputBase,
-  Button,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, InputBase, Button, Tabs, Tab } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 function Header() {
   const [value, setValue] = useState(0);
-  // const [open, setOpen] = useState(false); 
+
   // טיפול בשינוי של הטאבים
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-
-  // טיפול בפתיחה של המודאל
-  const handleClickOpen = () => {
-    // setOpen(true);
-  };
-
-  // טיפול בסגירת המודאל
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-
   return (
     <>
-      {/* <AppBar
+      <AppBar
         position="static"
         className="shadow-lg"
         style={{
           background: "#fff", // רקע לבן בהיר
           backdropFilter: "blur(10px)", // טשטוש עדין של התמונה ברקע
         }}
-      > */}
-      <AppBar
-      position="static"
-      className="shadow-lg"
-      style={{
-        backgroundColor: "#F5F5F5", // Lighter background
-        backdropFilter: "blur(10px)",
-      }}
-    >
+      >
         <Toolbar className="px-8 py-4 flex justify-between items-center">
           <Typography
             variant="h6"
@@ -611,13 +590,8 @@ function Header() {
           </Typography>
 
           <div className="flex items-center space-x-4">
-            <select
-              className="bg-[#33422b] text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#9B111E] transition duration-200 ease-in-out"
-            >
-              {/* אפשרויות לבחירה */}
-            </select>
-
-            <div className="relative flex items-center bg-[#f1f1f1] rounded-full">
+       
+            <div className="relative flex items-center bg-gray-100 rounded-full">
               <InputBase
                 placeholder="Search"
                 startAdornment={<SearchIcon className="text-gray-400" />}
@@ -627,14 +601,13 @@ function Header() {
 
             <Button
               className="bg-[#9B111E] hover:bg-[#D32F2F] text-white font-semibold py-2 px-5 rounded-full transition duration-200 ease-in-out shadow-md"
-              onClick={handleClickOpen} // פותח את המודאל
             >
               New Recipe
             </Button>
           </div>
         </Toolbar>
 
-        {/* <Tabs
+        <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
@@ -650,22 +623,131 @@ function Header() {
             label="Favorites"
             className="font-medium text-[#212121]" // שחור עבור הטאב השני
           />
-        </Tabs> */}
-        <Tabs
-        value={value}
-        onChange={handleChange}
-        // aria-label="basic tabs example"
-        className="bg-[#f7f2e7] text-gray-700 mt-2 px-4" // Lighter background with gray text
-        indicatorColor="secondary"
-        textColor="secondary"
-      >
-        {/* #c0281a */}
-        <Tab label="All Recipes" />
-        <Tab label="Favorites" />
-      </Tabs>
+        </Tabs>
       </AppBar>
     </>
   );
 }
 
 export default Header;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

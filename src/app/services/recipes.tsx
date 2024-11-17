@@ -24,3 +24,5 @@ export const getRecipes = async (): Promise<IRecipe[]> => {
 // export const getUserById = async (id: string) => {
 //   return (await axios.get(`https://dummyjson.com/users/${id}`)).data;
 // };
+
+

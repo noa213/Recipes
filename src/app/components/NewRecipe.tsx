@@ -34,13 +34,13 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
   };
 
   // Handle saving the new recipe
-  const handleSubmit = async () => {
-    console.log("New Recipe Submitted:", newRecipe);
-    const response = await addRecipe(newRecipe);
-    console.log("New Recipe Submitted:", response);
+  // const handleSubmit = async () => {
+  //   console.log("New Recipe Submitted:", newRecipe);
+  //   const response = await addRecipe(newRecipe);
+  //   console.log("New Recipe Submitted:", response);
 
-    onClose();
-  };
+  //   onClose();
+  // };
 
   return (
     <Dialog open={open} onClose={onClose}>
@@ -92,9 +92,9 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
         <Button onClick={onClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        {/* <Button onClick={handleSubmit} color="primary">
           Submit
-        </Button>
+        </Button> */}
       </DialogActions>
     </Dialog>
   );
