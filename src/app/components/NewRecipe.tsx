@@ -25,7 +25,7 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
     image: "",
     isFavorite: false,
   });
-  const addRecipeStore = useRecipeStore((state) => state.addRecipe); // גישה לפונקציה להוספת מתכון ל-store
+  const addRecipeStore = useRecipeStore((state) => state.addRecipe);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
