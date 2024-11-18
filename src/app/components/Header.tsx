@@ -83,11 +83,12 @@ function Header() {
           textColor="inherit"
         >
           {/* #c0281a */}
-          <Tab
+          <Tab  href={`/pages/allRecipes`}
             label="All Recipes"
             sx={{
               color: value === 0 ? "#9B111E" : "#374151",
               "&.mui-selected": { color: "#9B111E" },
+              
             }}
           />
           <Tab
