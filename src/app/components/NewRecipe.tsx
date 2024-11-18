@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -9,14 +8,16 @@ import {
   Button,
 } from "@mui/material";
 import { IRecipe } from "../types/recipe";
+import { useRecipeStore } from "../store/store";
 import { addRecipe } from "../services/recipes";
+
 interface NewRecipeDialogProps {
   open: boolean;
   onClose: () => void;
 }
 
 const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
-  const [newRecipe, setNewRecipe] = useState<Partial<IRecipe>>({
+  const [newRecipe, setNewRecipe] = useState<IRecipe>({
     name: "",
     category: "",
     ingredients: [],
@@ -24,6 +25,7 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
     image: "",
     isFavorite: false,
   });
+  const addRecipeStore = useRecipeStore((state) => state.addRecipe); // גישה לפונקציה להוספת מתכון ל-store
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,14 +35,11 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
     }));
   };
 
-  // Handle saving the new recipe
-  // const handleSubmit = async () => {
-  //   console.log("New Recipe Submitted:", newRecipe);
-  //   const response = await addRecipe(newRecipe);
-  //   console.log("New Recipe Submitted:", response);
-
-  //   onClose();
-  // };
+  const handleSubmit = async () => {
+    const response = await addRecipe(newRecipe);
+    addRecipeStore(response);
+    onClose();
+  };
 
   return (
     <Dialog open={open} onClose={onClose}>
@@ -87,17 +86,26 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
           value={newRecipe.instructions}
           onChange={handleInputChange}
         />
+        <TextField
+          margin="dense"
+          label="Image URL"
+          type="text"
+          fullWidth
+          variant="outlined"
+          name="image"
+          value={newRecipe.image}
+          onChange={handleInputChange}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">
           Cancel
         </Button>
-        {/* <Button onClick={handleSubmit} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Submit
-        </Button> */}
+        </Button>
       </DialogActions>
     </Dialog>
   );
 };
-
 export default NewRecipe;

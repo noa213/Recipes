@@ -14,8 +14,8 @@ export const getRecipes = async (): Promise<IRecipe[]> => {
 
   export const addRecipe = async (newRecipe: IRecipe): Promise<IRecipe> => {
     try {
-      const response = await axios.post("/api/recipes", newRecipe);  // נשלח בקשת POST עם המתכון החדש
-      return response.data.data;  // החזרת המתכון שנשמר בשרת
+      const response = await axios.post("/api/recipes", newRecipe);
+      return response.data.data;
     } catch (error) {
       console.error("Error adding recipe:", error);
       throw new Error("Failed to add recipe");
