@@ -1,7 +1,7 @@
 import connect from "@/app/lib/db/mongo-db";
 import Recipe from "@/app/lib/moduls/recipe";
 import { NextRequest, NextResponse } from "next/server";
-2
+
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }
