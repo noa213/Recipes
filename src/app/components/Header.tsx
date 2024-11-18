@@ -15,17 +15,16 @@ import NewRecipe from "./NewRecipe";
 function Header() {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
-  // טיפול בשינוי של הטאבים
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    
   };
 
-  // טיפול בפתיחה של המודאל
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  // טיפול בסגירת המודאל
   const handleClose = () => {
     setOpen(false);
   };

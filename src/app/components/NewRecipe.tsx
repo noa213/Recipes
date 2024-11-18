@@ -37,6 +37,8 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
 
   const handleSubmit = async () => {
     const response = await addRecipe(newRecipe);
+    // console.log(response);
+    
     addRecipeStore(response);
     onClose();
   };
