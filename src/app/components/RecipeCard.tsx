@@ -13,20 +13,20 @@ const RecipeCard = ({ recipes }: { recipes: IRecipe[] }) => {
     setSelectedRecipe(recipe);
   };
   const handleToggleFavorite = async (id: string) => {
-    console.log(id);
-
-    const response = await updateFavorite(id);
+    const response = await updateFavorite(id);    
     toggleFavorite(response._id!);
   };
 
   const handleCloseDialog = () => {
     setSelectedRecipe(null);
   };
-
+  console.log(recipes.map(recipe=>recipe));
+   
   return (
     <div>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4">
         {recipes.map((recipe: IRecipe) => (
+          
           <div
             key={recipe._id}
             className="bg-white rounded-lg shadow-xl overflow-hidden max-w-sm mx-auto mb-6 hover:shadow-2xl transform hover:scale-105 transition duration-300"

@@ -2,25 +2,38 @@ import connect from "@/app/lib/db/mongo-db";
 import Recipe from "@/app/lib/moduls/recipe";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+// הגדרת סוג עבור params
+type Params = {
+  id: string;
+};
+
+export async function PUT(req: NextRequest, { params }: { params: Params }) {
+  const { id } = params;
+
+  if (!id) {
+    return NextResponse.json(
+      { message: "ID is missing in params" },
+      { status: 400 }
+    );
+  }
+
   try {
     await connect();
-    const { id } = params;
-    const updatedRecipe = await Recipe.findByIdAndUpdate(
-      id,
-      { $set: { isFavorite: { $not: "$isFavorite" } } },
-      { new: true }
-    );
+    const updatedRecipe = await Recipe.findById(id);
+
     if (!updatedRecipe) {
       return NextResponse.json(
         { message: "Recipe not found" },
         { status: 404 }
       );
     }
-    return NextResponse.json({ updatedRecipe });
+
+    const updated = await Recipe.findByIdAndUpdate(
+      id,
+      { $set: { isFavorite: !updatedRecipe.isFavorite } },
+      { new: true }
+    );
+    return NextResponse.json({ updated });
   } catch (error) {
     return NextResponse.json({ message: "Error: " + error }, { status: 500 });
   }

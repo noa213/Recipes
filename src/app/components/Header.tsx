@@ -17,6 +17,7 @@ function Header() {
   const [open, setOpen] = useState(false);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    
   };
 
   const handleClickOpen = () => {
