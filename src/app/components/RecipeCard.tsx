@@ -13,9 +13,7 @@ const RecipeCard = ({ recipes }: { recipes: IRecipe[] }) => {
     setSelectedRecipe(recipe);
   };
   const handleToggleFavorite = async (id: string) => {
-    console.log(id);
-
-    const response = await updateFavorite(id);
+    const response = await updateFavorite(id);    
     toggleFavorite(response._id!);
   };
 

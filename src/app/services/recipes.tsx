@@ -2,7 +2,6 @@ import axios from "axios";
 import { IRecipe } from "@/app/types/recipe";
 
 export const getRecipes = async (): Promise<IRecipe[]> => {
-  // return (await axios.get("/api/recipes")).data;
   try {
     const response = await axios.get("/api/recipes");
     return response.data.data;
@@ -22,12 +21,10 @@ export const addRecipe = async (newRecipe: IRecipe): Promise<IRecipe> => {
   }
 };
 
-export const updateFavorite = async (
-  id: string,
-): Promise<IRecipe> => {
+export const updateFavorite = async (id: string): Promise<IRecipe> => {
   try {
-    const response = await axios.put(`/api/recipes/${id}`);
-    return response.data.data;
+    const response = await axios.put(`/api/recipes/resipes_according_id/${id}`);
+    return response.data.updated;
   } catch (error) {
     console.error("Error updating favorite status:", error);
     throw new Error("Failed to update favorite status");
