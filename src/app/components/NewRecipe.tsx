@@ -21,7 +21,7 @@ const NewRecipe: React.FC<NewRecipeDialogProps> = ({ open, onClose }) => {
     name: "",
     category: "",
     ingredients: [],
-    instructions: "",
+    instructions: [],
     image: "",
     isFavorite: false,
   });

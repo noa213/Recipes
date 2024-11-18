@@ -1,11 +1,11 @@
 // import Document from "mongoose";
 
 export interface IRecipe {
-  id?: string;
+  _id?: string;
   name: string;
   category: string;
   ingredients: string[];
-  instructions: string;
+  instructions: string[];
   image: string;
   isFavorite: boolean;
 }
