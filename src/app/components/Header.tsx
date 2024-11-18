@@ -15,17 +15,14 @@ import NewRecipe from "./NewRecipe";
 function Header() {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
-  // טיפול בשינוי של הטאבים
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  // טיפול בפתיחה של המודאל
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  // טיפול בסגירת המודאל
   const handleClose = () => {
     setOpen(false);
   };
@@ -53,9 +50,9 @@ function Header() {
           </Typography>
 
           <div className="flex items-center space-x-4">
-            {/* <select className="bg-[#33422b] text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#9B111E] transition duration-200 ease-in-out">
-             
-            </select> */}
+            <select className="bg-[#33422b] text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#9B111E] transition duration-200 ease-in-out">
+              {/* אפשרויות לבחירה */}
+            </select>
 
             <div className="relative flex items-center bg-[#f1f1f1] rounded-full">
               <InputBase
