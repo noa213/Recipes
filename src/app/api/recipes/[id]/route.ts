@@ -9,11 +9,9 @@ export async function PUT(
   try {
     await connect();
     const { id } = params;
-    const { name, category, ingredients, instructions, image, isFavorite } = await req.json();
-    console.log(id);
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       id,
-      { name, category, ingredients, instructions, image, isFavorite },
+      { $set: { isFavorite: { $not: "$isFavorite" } } },
       { new: true }
     );
     if (!updatedRecipe) {
