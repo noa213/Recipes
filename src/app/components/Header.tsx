@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,13 +11,52 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import NewRecipe from "./NewRecipe";
+import { useRecipeStore } from "../store/store";
+import RecipeCard from "./RecipeCard";
+import { getRecipes } from "../services/recipes";
 
 function Header() {
+  const recipes = useRecipeStore((state) => state.recipes);
+  const setRecipes = useRecipeStore((state) => state.setRecipes);
+  const loaded = useRecipeStore((state) => state.loaded);
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
+  const [filteredRecipes, setFilteredRecipes] = useState(recipes);
+  const [selectedCategory, setSelectedCategory] = useState(""); // Category filter state
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!loaded) {
+        try {
+          const response = await getRecipes();
+          setRecipes(response);
+          setFilteredRecipes(response);
+        } catch (error) {
+          console.error("Failed to fetch recipes:", error);
+        }
+      }
+    };
+    fetchData();
+  }, [loaded, setRecipes]);
+
+  const memoizedFilteredRecipes = useMemo(() => {
+    let filtered = recipes;
+
+    if (value === 1) {
+      filtered = filtered.filter((recipe) => recipe.isFavorite);
+    }
+
+    if (selectedCategory) {
+      filtered = filtered.filter(
+        (recipe) => recipe.category === selectedCategory
+      );
+    }
+
+    return filtered;
+  }, [recipes, value, selectedCategory]);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
-    
   };
 
   const handleClickOpen = () => {
@@ -26,6 +65,12 @@ function Header() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleCategoryChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedCategory(event.target.value);
   };
 
   return (
@@ -42,7 +87,7 @@ function Header() {
           <Typography
             variant="h6"
             component="div"
-            className="font-extrabold text-4xl tracking-wide"
+            className="font-bold text-4xl tracking-wide"
             style={{
               color: "#212121",
             }}
@@ -51,9 +96,28 @@ function Header() {
           </Typography>
 
           <div className="flex items-center space-x-4">
-            <select className="bg-[#33422b] text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#9B111E] transition duration-200 ease-in-out">
-              {/* אפשרויות לבחירה */}
-            </select>
+            {/* <select
+              onChange={handleCategoryChange}
+              className="bg-[#A8C686] text-gray-800 rounded-lg px-6 py-3 focus:outline-none transition-all duration-500 ease-in-out shadow-lg hover:bg-[#C4E5A7] cursor-pointer transform hover:scale-105"
+>              <option value="">All Categories</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Dessert">Dessert</option>
+            </select>{" "} */}
+
+            <div className="relative inline-block w-64">
+              <select
+                onChange={handleCategoryChange}
+                className="w-full bg-[#DFF2D8] text-gray-800 border border-[#A8C686] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C4E5A7] shadow-md transition-all duration-300 ease-in-out appearance-none cursor-pointer"
+              >
+>              <option value="">All Categories</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Dessert">Dessert</option>
+              </select>
+            </div>
 
             <div className="relative flex items-center bg-[#f1f1f1] rounded-full">
               <InputBase
@@ -62,7 +126,6 @@ function Header() {
                 className="text-gray-700 bg-transparent pl-3 pr-4 py-2 rounded-full placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9B111E] transition duration-200 ease-in-out"
               />
             </div>
-
             <Button
               className="bg-[#9B111E] hover:bg-[#D32F2F] text-white font-semibold py-2 px-5 rounded-full transition duration-200 ease-in-out shadow-md"
               onClick={handleClickOpen}
@@ -79,16 +142,13 @@ function Header() {
           TabIndicatorProps={{
             style: { background: "#9B111E" },
           }}
-          // indicatorColor="primary"
           textColor="inherit"
         >
-          {/* #c0281a */}
-          <Tab  href={`/pages/allRecipes`}
+          <Tab
             label="All Recipes"
             sx={{
               color: value === 0 ? "#9B111E" : "#374151",
               "&.mui-selected": { color: "#9B111E" },
-              
             }}
           />
           <Tab
@@ -101,6 +161,9 @@ function Header() {
         </Tabs>
       </AppBar>
       <NewRecipe open={open} onClose={handleClose} />
+      <div className="mt-6">
+        <RecipeCard recipes={memoizedFilteredRecipes} />
+      </div>
     </>
   );
 }
