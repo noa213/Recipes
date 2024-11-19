@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useEffect, useMemo, useState } from "react";
 import {
   AppBar,
@@ -21,8 +21,8 @@ function Header() {
   const loaded = useRecipeStore((state) => state.loaded);
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
-  const [filteredRecipes, setFilteredRecipes] = useState(recipes);
-  const [selectedCategory, setSelectedCategory] = useState(""); // Category filter state
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +30,6 @@ function Header() {
         try {
           const response = await getRecipes();
           setRecipes(response);
-          setFilteredRecipes(response);
         } catch (error) {
           console.error("Failed to fetch recipes:", error);
         }
@@ -42,18 +41,28 @@ function Header() {
   const memoizedFilteredRecipes = useMemo(() => {
     let filtered = recipes;
 
+    // Filter by favorite
     if (value === 1) {
       filtered = filtered.filter((recipe) => recipe.isFavorite);
     }
 
+    // Filter by category
     if (selectedCategory) {
       filtered = filtered.filter(
-        (recipe) => recipe.category === selectedCategory
+        (recipe) =>
+          recipe.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Filter by search term
+    if (search) {
+      filtered = filtered.filter((recipe) =>
+        recipe.name.toLowerCase().includes(search.toLowerCase())
       );
     }
 
     return filtered;
-  }, [recipes, value, selectedCategory]);
+  }, [recipes, value, selectedCategory, search]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -71,6 +80,10 @@ function Header() {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setSelectedCategory(event.target.value);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
   };
 
   return (
@@ -96,34 +109,26 @@ function Header() {
           </Typography>
 
           <div className="flex items-center space-x-4">
-            {/* <select
-              onChange={handleCategoryChange}
-              className="bg-[#A8C686] text-gray-800 rounded-lg px-6 py-3 focus:outline-none transition-all duration-500 ease-in-out shadow-lg hover:bg-[#C4E5A7] cursor-pointer transform hover:scale-105"
->              <option value="">All Categories</option>
-              <option value="Breakfast">Breakfast</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Dessert">Dessert</option>
-            </select>{" "} */}
-
             <div className="relative inline-block w-64">
               <select
                 onChange={handleCategoryChange}
                 className="w-full bg-[#DFF2D8] text-gray-800 border border-[#A8C686] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#C4E5A7] shadow-md transition-all duration-300 ease-in-out appearance-none cursor-pointer"
               >
->              <option value="">All Categories</option>
-              <option value="Breakfast">Breakfast</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Dessert">Dessert</option>
+                <option value="">All Categories</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Dessert">Dessert</option>
               </select>
             </div>
 
-            <div className="relative flex items-center bg-[#f1f1f1] rounded-full">
+            <div className="relative flex items-center bg-[#f1f1f1] rounded-full shadow-sm">
+              <SearchIcon className="absolute left-3 text-gray-400" />
               <InputBase
                 placeholder="Search"
-                startAdornment={<SearchIcon className="text-gray-400" />}
-                className="text-gray-700 bg-transparent pl-3 pr-4 py-2 rounded-full placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9B111E] transition duration-200 ease-in-out"
+                value={search}
+                onChange={handleSearchChange}
+                className="w-full pl-10 pr-4 py-2 rounded-full text-gray-700 bg-transparent placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#9B111E] transition duration-200 ease-in-out"
               />
             </div>
             <Button
@@ -169,3 +174,5 @@ function Header() {
 }
 
 export default Header;
+
+
