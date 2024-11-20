@@ -35,8 +35,8 @@
 //       <Filter
 //         recipes={recipes}
 //         selectedCategory={selectedCategory}
-//         setFilteredRecipes={setFilteredRecipes} // מעביר את פונקציית ה-set כדי לעדכן את המתכונים המסוננים
-//         setSelectedCategory={setSelectedCategory} // מעביר את פונקציית ה-set כדי לעדכן את הקטגוריה הנבחרת
+//         setFilteredRecipes={setFilteredRecipes} 
+//         setSelectedCategory={setSelectedCategory} 
 //       />
 //       {/* אם אין מתכונים מסוננים, הצג הודעת "אין מתכונים מתאימים" */}
 //       {/* {filteredRecipes.length === 0 ? (
