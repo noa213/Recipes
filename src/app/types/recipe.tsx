@@ -9,3 +9,5 @@ export interface IRecipe {
   image: string;
   isFavorite: boolean;
 }
+
+

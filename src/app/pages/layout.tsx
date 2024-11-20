@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Header from "./components/Header";
+// import "./globals.css";
+import Header from "@/app/components/Header";
 
 export const metadata: Metadata = {
   title: "Recipes App",
@@ -11,11 +11,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+   
       <body className="bg-cover bg-center bg-fixed bg-[url('https://images.pexels.com/photos/4199098/pexels-photo-4199098.jpeg')] min-h-screen">
+        <Header />
         {children}
       </body>
-    </html>
+  
   );
 }
 
