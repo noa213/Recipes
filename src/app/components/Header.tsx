@@ -167,7 +167,7 @@ import { AppBar } from "@mui/material";
 import NewRecipe from "./NewRecipe";
 import { useRecipeStore } from "../store/store";
 import RecipeCard from "./RecipeCard";
-import { getRecipes } from "../services/recipes";
+import { getRecipes } from "@/app/services/recipes";
 import HeaderTabs from "./HeaderTabs";
 import HeaderToolbar from "./HeaderToolbar";
 
