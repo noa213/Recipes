@@ -209,7 +209,6 @@ function Header() {
     return filtered;
   }, [recipes, value, selectedCategory, search]);
 
-  // חיתוך המתכונים לפי העמוד, עם בדיקה שrecipes קיים
   const currentRecipes = recipes 
     ? memoizedFilteredRecipes.slice(
         (currentPage - 1) * recipesPerPage,
