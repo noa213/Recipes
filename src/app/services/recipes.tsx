@@ -4,7 +4,7 @@ import { IRecipe } from "@/app/types/recipe";
 export const getRecipes = async (): Promise<IRecipe[]> => {
   try {
     const response = await axios.get("/api/recipes");
-    console.log("response get rescipe: ",response.data.data);
+    console.log("response get rescipe: ",response.data);
     
     return response.data.data;
   } catch (error) {
