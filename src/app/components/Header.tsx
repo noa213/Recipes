@@ -169,7 +169,8 @@ function Header() {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const recipesPerPage = 4;
 
   useEffect(() => {
