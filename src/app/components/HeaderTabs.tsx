@@ -7,7 +7,7 @@ import {
 
 type HeaderTabsProps = {
     value: number;
-    onChange: (event: React.SyntheticEvent, newValue: number) => void; // פונקציה לטיפול בשינוי הטאב
+    onChange: (event: React.SyntheticEvent, newValue: number) => void;
   };
   
   const HeaderTabs: React.FC<HeaderTabsProps> = ({ value, onChange }) => {
