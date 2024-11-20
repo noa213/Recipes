@@ -216,7 +216,7 @@ function Header() {
       )
     : [];
 
-  // const totalPages = Math.ceil(memoizedFilteredRecipes.length / recipesPerPage);
+  const totalPages = Math.ceil(memoizedFilteredRecipes.length / recipesPerPage);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -290,7 +290,7 @@ function Header() {
         <button
           className="px-4 py-2 bg-gray-700 text-white rounded-full disabled:opacity-50 transition-all"
           // onClick={handleNext}
-          // disabled={currentPage === totalPages}
+          disabled={currentPage === totalPages}
         >
           &gt;
         </button>
