@@ -6,7 +6,7 @@ const connect = async () => {
   try {
     console.log("data mongo ",MONGODB_URI);
     
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect("mongodb+srv://nlevin1001:xwI20UqpE5hqoPXa@cluster0.gp97s.mongodb.net/recipes-db");
     console.log("mongoDB connected...");
     
   } catch (error) {

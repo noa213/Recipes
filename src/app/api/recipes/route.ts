@@ -6,6 +6,8 @@ export async function GET() {
   try {
     await connect();
     const data = await Recipe.find();
+    console.log(data);
+    
     return NextResponse.json({ data });
   } catch (error) {
     return NextResponse.json("Error in fetching " + error);
