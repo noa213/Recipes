@@ -62,8 +62,10 @@ function Header() {
 
   const currentRecipes = recipes
     ? memoizedFilteredRecipes.slice(
-        (currentPage - 1) * recipesPerPage,
-        currentPage * recipesPerPage
+        // (currentPage - 1) * recipesPerPage,
+        // currentPage * recipesPerPage
+        indexOfFirstRecipe,
+        indexOfLastRecipe
       )
     : [];
 
