@@ -216,7 +216,7 @@ function Header() {
       )
     : [];
 
-  const totalPages = Math.ceil(memoizedFilteredRecipes.length / recipesPerPage);
+  // const totalPages = Math.ceil(memoizedFilteredRecipes.length / recipesPerPage);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -240,17 +240,17 @@ function Header() {
     setSearch(event.target.value);
   };
 
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  // const handleNext = () => {
+  //   if (currentPage < totalPages) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  // const handlePrevious = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
 
   return (
     <>
@@ -279,18 +279,18 @@ function Header() {
       <div className="flex justify-between items-center mt-6">
         <button
           className="px-4 py-2 bg-gray-700 text-white rounded-full disabled:opacity-50 transition-all"
-          onClick={handlePrevious}
+          // onClick={handlePrevious}
           disabled={currentPage === 1}
         >
           &lt;
         </button>
-        <div className="text-lg font-semibold">
+        {/* <div className="text-lg font-semibold">
           {currentPage} / {totalPages}
-        </div>
+        </div> */}
         <button
           className="px-4 py-2 bg-gray-700 text-white rounded-full disabled:opacity-50 transition-all"
-          onClick={handleNext}
-          disabled={currentPage === totalPages}
+          // onClick={handleNext}
+          // disabled={currentPage === totalPages}
         >
           &gt;
         </button>
