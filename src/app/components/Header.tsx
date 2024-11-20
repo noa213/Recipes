@@ -59,10 +59,18 @@ function Header() {
   // חיתוך המתכונים לפי העמוד
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-  const currentRecipes = memoizedFilteredRecipes.slice(
-    indexOfFirstRecipe,
-    indexOfLastRecipe
-  );
+
+  const currentRecipes = recipes
+    ? memoizedFilteredRecipes.slice(
+        (currentPage - 1) * recipesPerPage,
+        currentPage * recipesPerPage
+      )
+    : [];
+
+  // const currentRecipes = memoizedFilteredRecipes.slice(
+  //   indexOfFirstRecipe,
+  //   indexOfLastRecipe
+  // );
 
   const totalPages = Math.ceil(memoizedFilteredRecipes.length / recipesPerPage);
 
