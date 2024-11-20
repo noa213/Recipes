@@ -4,6 +4,8 @@ import { IRecipe } from "@/app/types/recipe";
 export const getRecipes = async (): Promise<IRecipe[]> => {
   try {
     const response = await axios.get("/api/recipes");
+    console.log(response.data.data);
+    
     return response.data.data;
   } catch (error) {
     console.error("Error fetching recipes:", error);
